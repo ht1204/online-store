@@ -11,9 +11,10 @@ export class AuthController {
     @Render('auth/register') 
     register() {
         const viewData = [];
-        viewData['title'] = 'User Register - Online Store'; viewData['subtitle'] = 'User Register';
+        viewData['title'] = 'User Register - Online Store'; 
+        viewData['subtitle'] = 'User Register';
         return {
-            viewData: viewData,
+            viewData,
         };
     }
 
