@@ -1,5 +1,5 @@
 import { Controller, Get, Render, Post, Redirect, Body } from '@nestjs/common';
-import { User } from 'src/models/user.entity';
+import { User } from '../models/user.entity';
 import { UsersService } from '../models/users.service';
 
 @Controller('/auth')
