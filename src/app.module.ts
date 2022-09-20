@@ -1,4 +1,5 @@
 import { Global, Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { ProductsController } from './products.controller';
@@ -12,15 +13,18 @@ import { AuthModule } from './auth/auth.module';
 @Global()
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-        type: 'mysql',
-        host: 'localhost',
-        port: 3306,
-        username: 'root',
-        password: '',
-        database: 'online_store',
-        entities: ["dist/**/*.entity{.ts,.js}"],
-        synchronize: true
+   ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+        useFactory: () => ({
+          type: 'mysql',
+          host: process.env.DB_HOST,
+          port: parseInt(process.env.DB_PORT) || 3306,
+          username: process.env.DB_USERNAME,
+          password: process.env.DB_PASSWORD,
+          database: process.env.DB_NAME,
+          entities: ["dist/**/*.entity{.ts,.js}"],
+          synchronize: true
+        })
       }),
     TypeOrmModule.forFeature([Product, User]),
     AdminModule,
