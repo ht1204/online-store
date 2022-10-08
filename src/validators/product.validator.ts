@@ -3,7 +3,10 @@ import validator from 'validator';
 export class ProductValidator {
 
     static imageWhiteList: string[] = [
-        'image/png', 'image/jpeg', 'image/jpg', 'image/webp',
+        'image/png', 
+        'image/jpeg', 
+        'image/jpg', 
+        'image/webp',
     ];
 
     static validate(body, file: Express.Multer.File, toValidate: string[]) {
@@ -35,7 +38,7 @@ export class ProductValidator {
                     errors.push('Invalid image format');
                 }
             }
-            return errors;
         }
+        return errors;
     }
 }

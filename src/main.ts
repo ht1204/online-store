@@ -26,9 +26,17 @@ async function bootstrap() {
   );
 
   app.use((req, res, next) => { 
-    res.locals.session = req.session; 
+    res.locals.session = req.session;
+    const flashErrors: string[] = req.session.flashErrors;
+     
+    if (flashErrors) {
+      res.locals.flashErrors = flashErrors;
+      req.session.flashErrors = null; 
+    }
+    
     next();
   });
+
   app.use(cookieParser());
   app.use(nestCsrf());
 
