@@ -37,6 +37,14 @@ async function bootstrap() {
     next();
   });
 
+  app.use('/admin*', (req, res, next) => { 
+    if(req.session.user && req.session.user.role === 'admin'){
+      next();
+    } else {
+      res.redirect('/');
+    }
+  });
+
   app.use(cookieParser());
   app.use(nestCsrf());
 
