@@ -23,8 +23,13 @@ export class Order {
     @CreateDateColumn()
     date: Date;
 
-    @ManyToOne(() => User, (user) => user.orders) user: User;
-    @OneToMany(() => Item, (item) => item.order) items: Item[];
+    @ManyToOne(() => User, (user) => user.orders) 
+    user: User;
+    
+    @OneToMany(() => Item, (item) => item.order, {
+        cascade: ['insert']
+    }) 
+    items: Item[];
 
     getId(): number {
         return this.id;
@@ -43,6 +48,18 @@ export class Order {
     }
     setDate(date: Date) {
         this.date = date;
+    }
+    getUser(): User {
+        return this.user;
+    }
+    setUser(user: User) {
+        this.user = user;
+    }
+    getItems(): Item[] {
+        return this.items;
+    }
+    setItems(items: Item[]) {
+        this.items = items;
     }
 
 }
