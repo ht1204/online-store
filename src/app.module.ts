@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { CartModule } from './cart/cart.module';
 import { OrdersService } from './models/orders.service';
 import { Order } from './models/order.entity';
+import { AccountModule } from './account/account.module';
 
 @Global()
 @Module({
@@ -33,6 +34,7 @@ import { Order } from './models/order.entity';
     AdminModule,
     AuthModule,
     CartModule,
+    AccountModule,
   ],
   controllers: [AppController, ProductsController],
   providers: [ProductsService, UsersService, OrdersService],
